@@ -1,16 +1,14 @@
-import React, { memo } from 'react';
+import React, { memo, useContext } from 'react';
 import { CloseButton } from 'react-bootstrap';
 import Konami from 'react-konami-code';
 import { FaucetAppNetworkInfo } from './shared/models/types';
 import './assets/css/Easter.css';
-import chainrunner from './assets/img/chainrunner.png'
-import boredape from './assets/img/boredape.png'
-import boredape2 from './assets/img/boredape2.png'
-import coolcat from './assets/img/coolcat.png'
-import punk from './assets/img/punk.png'
+import chainrunner from './assets/img/chainrunner.png';
+import boredape from './assets/img/boredape.png';
+import boredape2 from './assets/img/boredape2.png';
+import coolcat from './assets/img/coolcat.png';
+import punk from './assets/img/punk.png';
 // import wow from './assets/img/wow.png'
-
-
 
 // 'https://goerlifaucet.com/static/media/chainrunner.fd1307a3.png';
 // const boredape = 'https://goerlifaucet.com/static/media/boredape.6cb8770e.png';
@@ -26,31 +24,31 @@ export const EASTER_EGG_SUBJECTS = (
   network: string,
   tokenName: string
 ): EasterEggSubjects[] => [
-    {
-      imageSrc: chainrunner,
-      tagline: 'Mega City awaits your smart contract deployment, Runner.',
-    },
-    {
-      imageSrc: boredape,
-      tagline: `Now you can donate your new ${network} ${tokenName} to the ape wildlife fund.`,
-    },
-    {
-      imageSrc: boredape2,
-      tagline: `Now you can donate your new ${network} ${tokenName} to the ape wildlife fund.`,
-    },
-    {
-      imageSrc: coolcat,
-      tagline: `Hello fren. Will you spend that ${network} ${tokenName} on your pet, or your next dapp?`,
-    },
-    {
-      imageSrc: punk,
-      tagline: `Here's to the misfits and the punks. Enjoy your ${network} ${tokenName}, builder.`,
-    },
-    // {
-    //   imageSrc: wow,
-    //   tagline: `Use this ${network} ${tokenName} to bring representation, inclusivity, and equal opportunities to Web3!`,
-    // },
-  ];
+  {
+    imageSrc: chainrunner,
+    tagline: 'Mega City awaits your smart contract deployment, Runner.',
+  },
+  {
+    imageSrc: boredape,
+    tagline: `Now you can donate your new ${network} ${tokenName} to the ape wildlife fund.`,
+  },
+  {
+    imageSrc: boredape2,
+    tagline: `Now you can donate your new ${network} ${tokenName} to the ape wildlife fund.`,
+  },
+  {
+    imageSrc: coolcat,
+    tagline: `Hello fren. Will you spend that ${network} ${tokenName} on your pet, or your next dapp?`,
+  },
+  {
+    imageSrc: punk,
+    tagline: `Here's to the misfits and the punks. Enjoy your ${network} ${tokenName}, builder.`,
+  },
+  // {
+  //   imageSrc: wow,
+  //   tagline: `Use this ${network} ${tokenName} to bring representation, inclusivity, and equal opportunities to Web3!`,
+  // },
+];
 
 export const EASTER_EGG_DROP_COLORS = [
   'random',
@@ -112,8 +110,9 @@ class Particle {
       easterEggData.config.dropSizeFloor;
     this.ctx = canvas.getContext('2d');
     if (this.easterEggData.dropFill === 'random') {
-      this.color = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255
-        }, 1)`;
+      this.color = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${
+        Math.random() * 255
+      }, 1)`;
     } else {
       this.color = this.easterEggData.dropFill;
     }
@@ -153,7 +152,7 @@ function beginEasterEgg(
 ): void {
   const image = new Image();
   image.src = props.subject.imageSrc;
-  image.crossOrigin = "Anonymous";
+  image.crossOrigin = 'Anonymous';
   image.addEventListener('load', function () {
     const body = document.getElementsByTagName('body')[0];
     body.setAttribute('class', 'stop-scrolling');
@@ -275,7 +274,7 @@ export function EasterEggComponent(props: EasterEggRenderProps): JSX.Element {
 
   return (
     <div
-      className="egg-content"
+      className='egg-content'
       style={{
         position: 'absolute',
         width: '100vw',
@@ -314,13 +313,13 @@ export function EasterEggComponent(props: EasterEggRenderProps): JSX.Element {
           onClick={props.onClickExit}
         >
           <CloseButton
-            className="egg-button"
+            className='egg-button'
             style={{
               backgroundSize: '1.5em',
               width: '1.5em',
               height: '1.5em',
             }}
-            variant="white"
+            variant='white'
           />
         </span>
         <h3
@@ -365,12 +364,13 @@ const EasterEggContainer = memo(function EasterEggContainer({
   );
   const easterEggSubject =
     easter_egg_network_subject[
-    Math.floor(Math.random() * easter_egg_network_subject.length)
+      Math.floor(Math.random() * easter_egg_network_subject.length)
     ];
   const easterEggDropFill =
     EASTER_EGG_DROP_COLORS[
-    Math.floor(Math.random() * EASTER_EGG_DROP_COLORS.length)
+      Math.floor(Math.random() * EASTER_EGG_DROP_COLORS.length)
     ];
+
   return (
     <div className={showEaster ? 'basket' : 'basket hide'}>
       {!showEaster && (
@@ -382,9 +382,7 @@ const EasterEggContainer = memo(function EasterEggContainer({
       )}
       <EasterEggComponent
         onClickExit={() => {
-          console.log('close');
-
-          responder(true);
+          responder(false);
         }}
         show={showEaster}
         transactionUrl={transactionUrl}
