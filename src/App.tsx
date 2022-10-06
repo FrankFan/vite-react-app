@@ -8,6 +8,8 @@ import EasterEggContainer from './EasterEggComponent';
 import { FaucetRequestSuccessResponse } from './shared/models/types';
 import mitt from 'mitt';
 import { Father } from './demo/Father';
+import { PriceInput } from './demo/PriceInput';
+import { PriceInputDemo } from './demo/PriceInput/demo';
 const emitter = mitt();
 // console.log(emitter);
 
@@ -28,19 +30,6 @@ export const MyContext = createContext({
 
 function App() {
   const [showEaster, setShowEaster] = useState<boolean>(false);
-  // const [requestItems, setRequestItems] = useState<FaucetRequestItem[]>(
-  //   // FaucetLocalStorage.getRequests()
-  //   []
-  // );
-
-  // useEffect(() => {
-  //   console.log('useEffect');
-
-  //   emitter.on('foo', (e) => {
-  //     console.log('foo', e);
-  //     setShowEaster(false);
-  //   });
-  // }, []);
 
   return (
     <div className='App'>
@@ -80,6 +69,9 @@ function App() {
       </Card>
       <Card title='测试 useContext'>
         <Father />
+      </Card>
+      <Card title='受控组件'>
+        <PriceInputDemo />
       </Card>
     </div>
   );
